@@ -34,7 +34,7 @@ lib/
 ├── services/          # External API calls and Local Database setup (DBService)
 ├── views/             # UI layer / Screens (LoginView, HomeView)
 └── main.dart          # Application entry point and Firebase Initialization
-
+```
 🚀 How to Run the Project
 Clone this repository.
 
