@@ -16,10 +16,10 @@ class ShipmentModel {
   factory ShipmentModel.fromJson(Map<String, dynamic> json) {
     return ShipmentModel(
       id: json['id'],
-      trackingNumber: json['tracking_number' ?? ''], // Fallback jika field tidak ada
-      recipientName: json['recipient_name' ?? ''], // Fallback jika field tidak ada
-      destination: json['destination' ?? ''], // Fallback jika field tidak ada
-      status: json['status' ?? ''], // Fallback jika field tidak ada
+      trackingNumber: json['tracking_number'], // Fallback jika field tidak ada
+      recipientName: json['recipient_name'], // Fallback jika field tidak ada
+      destination: json['destination'], // Fallback jika field tidak ada
+      status: json['status'], // Fallback jika field tidak ada
     );
   }
 }

@@ -47,6 +47,7 @@ class HomeView extends StatelessWidget {
               elevation: 3,
               margin: const EdgeInsets.all(10),
               child: ListTile(
+                trailing: const Icon(Icons.local_shipping),
                 title: Text(
                   item.recipientName,
                   style: const TextStyle(fontWeight: FontWeight.bold),
@@ -80,7 +81,6 @@ class HomeView extends StatelessWidget {
                     ),
                   ],
                 ),
-                trailing: const Icon(Icons.local_shipping),
               ),
             );
           },

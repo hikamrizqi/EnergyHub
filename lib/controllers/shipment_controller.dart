@@ -22,7 +22,7 @@ class ShipmentController extends GetxController {
       //Hit endpoint MockAPI untuk mendapatkan data pengiriman
       var response = await http.get(
         Uri.parse(
-          'https://69cf2caaa4647a9fc6752532.mockapi.io/api/v1/:endpoint',
+          'https://69cf2caaa4647a9fc6752532.mockapi.io/api/v1/shipments',
         ),
       );
 
