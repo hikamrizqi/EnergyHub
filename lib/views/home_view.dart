@@ -1,4 +1,5 @@
 import 'package:energy_hub/controllers/auth_controller.dart';
+import 'package:energy_hub/controllers/notification_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/shipment_controller.dart';
@@ -12,6 +13,10 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthController authController = Get.find<AuthController>();
+    final NotificationController notifController = Get.put(
+      NotificationController(),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Dashboard Logistik'),

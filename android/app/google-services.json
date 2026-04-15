@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "903796490378",
+    "project_id": "energyhub-logistic",
+    "storage_bucket": "energyhub-logistic.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:903796490378:android:0b599ee0e9354e5f3d6d73",
+        "android_client_info": {
+          "package_name": "com.example.energy_hub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDI-BCA_kbmRlOnI5HqLZLDay0K5O75oxA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
