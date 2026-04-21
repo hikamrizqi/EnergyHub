@@ -62,6 +62,7 @@ class DbServices {
     return List.generate(maps.length, (i) {
       return ShipmentModel(
         id: maps[i]['id'],
+        userId: maps[i]['user_id'] ?? 0,
         trackingNumber: maps[i]['tracking_number'],
         recipientName: maps[i]['recipient_name'],
         destination: maps[i]['destination'],

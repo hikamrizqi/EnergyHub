@@ -3,6 +3,7 @@ import 'package:energy_hub/controllers/notification_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/shipment_controller.dart';
+import 'add_shipment_view.dart';
 
 class HomeView extends StatelessWidget {
   // Panggil controllernya
@@ -13,9 +14,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthController authController = Get.find<AuthController>();
-    final NotificationController notifController = Get.put(
-      NotificationController(),
-    );
+    Get.put(NotificationController());
 
     return Scaffold(
       appBar: AppBar(
@@ -91,6 +90,15 @@ class HomeView extends StatelessWidget {
           },
         );
       }),
+
+      // Tombol Plus untuk tambah pengiriman
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.to(() => const AddShipmentView());
+        },
+        backgroundColor: Colors.blue,
+        child: const Icon(Icons.add, color: Colors.white),
+      ),
     );
   }
 }

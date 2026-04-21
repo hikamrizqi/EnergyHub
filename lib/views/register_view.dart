@@ -1,31 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:energy_hub/controllers/auth_controller.dart';
-import 'package:energy_hub/views/register_view.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+class RegisterView extends StatefulWidget {
+  const RegisterView({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<RegisterView> createState() => _RegisterViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _RegisterViewState extends State<RegisterView> {
   late TextEditingController emailController;
   late TextEditingController passwordController;
+  late TextEditingController confirmPasswordController;
   bool _obscurePassword = true;
+  bool _obscureConfirmPassword = true;
 
   @override
   void initState() {
     super.initState();
     emailController = TextEditingController();
     passwordController = TextEditingController();
+    confirmPasswordController = TextEditingController();
   }
 
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
+    confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -34,25 +37,29 @@ class _LoginViewState extends State<LoginView> {
     final AuthController authController = Get.put(AuthController());
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Daftar Akun'),
+        backgroundColor: Colors.blue,
+        elevation: 0,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const SizedBox(height: 60),
+              const SizedBox(height: 40),
               const Icon(Icons.local_shipping, size: 80, color: Colors.blue),
               const SizedBox(height: 16),
               const Text(
-                'Welcome Back',
+                'Buat Akun Baru',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const Text(
-                'Sign in to continue',
+                'Daftar untuk mulai menggunakan aplikasi',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+                style: TextStyle(fontSize: 14, color: Colors.grey),
               ),
               const SizedBox(height: 40),
 
@@ -77,7 +84,7 @@ class _LoginViewState extends State<LoginView> {
                 obscureText: _obscurePassword,
                 decoration: InputDecoration(
                   labelText: 'Password',
-                  hintText: 'Masukkan password Anda',
+                  hintText: 'Minimal 6 karakter',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -96,22 +103,36 @@ class _LoginViewState extends State<LoginView> {
                   ),
                 ),
               ),
-              const SizedBox(height: 12),
-
-              /// Forgot Password Link
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () {
-                    // TODO: Implementasi forgot password
-                    // authController.resetPassword(emailController.text);
-                  },
-                  child: const Text('Lupa Password?'),
-                ),
-              ),
               const SizedBox(height: 20),
 
-              /// Login Button
+              /// Confirm Password TextField
+              TextField(
+                controller: confirmPasswordController,
+                obscureText: _obscureConfirmPassword,
+                decoration: InputDecoration(
+                  labelText: 'Konfirmasi Password',
+                  hintText: 'Ulangi password Anda',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  prefixIcon: const Icon(Icons.lock),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscureConfirmPassword
+                          ? Icons.visibility_off
+                          : Icons.visibility,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _obscureConfirmPassword = !_obscureConfirmPassword;
+                      });
+                    },
+                  ),
+                ),
+              ),
+              const SizedBox(height: 32),
+
+              /// Register Button
               Obx(() {
                 return ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -122,9 +143,10 @@ class _LoginViewState extends State<LoginView> {
                   onPressed: authController.isLoading.value
                       ? null
                       : () {
-                          authController.login(
+                          authController.register(
                             emailController.text.trim(),
                             passwordController.text,
+                            confirmPasswordController.text,
                           );
                         },
                   child: authController.isLoading.value
@@ -138,24 +160,24 @@ class _LoginViewState extends State<LoginView> {
                           ),
                         )
                       : const Text(
-                          'Login',
+                          'Daftar',
                           style: TextStyle(fontSize: 18, color: Colors.white),
                         ),
                 );
               }),
               const SizedBox(height: 20),
 
-              /// Sign Up Link
+              /// Sign In Link
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Belum punya akun? "),
+                  const Text("Sudah punya akun? "),
                   GestureDetector(
                     onTap: () {
-                      Get.to(() => const RegisterView());
+                      Get.back();
                     },
                     child: const Text(
-                      'Daftar di sini',
+                      'Login di sini',
                       style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.bold,
@@ -164,7 +186,7 @@ class _LoginViewState extends State<LoginView> {
                   ),
                 ],
               ),
-              const SizedBox(height: 60),
+              const SizedBox(height: 40),
             ],
           ),
         ),
